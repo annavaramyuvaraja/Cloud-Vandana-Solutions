@@ -1,0 +1,295 @@
+Java
+import java.util.*;
+public class ArrayShuffler {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        shuffleArray(array);
+        
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+    }
+
+    public static void shuffleArray(int[] array) {
+        int n = array.length;
+        Random random = new Random();
+
+        for (int i = n - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+}
+
+
+
+
+
+
+import java.util.*;
+public class RomanToInteger {
+    public static void main(String[] args) {
+        String romanNumeral = "X"; // Replace this with your Roman numeral input
+        int result = romanToInt(romanNumeral);
+        System.out.println("The integer value of " + romanNumeral + " is: " + result);
+    }
+
+    public static int romanToInt(String s) {
+        HashMap<Character, Integer> romanValues = new HashMap<>();
+        romanValues.put('I', 1);
+        romanValues.put('V', 5);
+        romanValues.put('X', 10);
+        romanValues.put('L', 50);
+        romanValues.put('C', 100);
+        romanValues.put('D', 500);
+        romanValues.put('M', 1000);
+
+        int result = 0;
+        int prevValue = 0;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currValue = romanValues.get(s.charAt(i));
+
+            if (currValue < prevValue) {
+                result -= currValue;
+            } else {
+                result += currValue;
+            }
+
+            prevValue = currValue;
+        }
+
+        return result;
+    }
+}
+
+
+
+public class PangramChecker {
+    public static void main(String[] args) {
+        String input = "The quick brown fox jumps over the lazy dog"; // Replace this with your input string
+        boolean isPangram = isPangram(input);
+        if (isPangram) {
+            System.out.println("The input is a pangram.");
+        } else {
+            System.out.println("The input is not a pangram.");
+        }
+    }
+
+    public static boolean isPangram(String input) {
+        input = input.toLowerCase();
+        boolean[] alphabet = new boolean[26]; // An array to mark the presence of each letter
+        
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if ('a' <= c && c <= 'z') {
+                int index = c - 'a';
+                alphabet[index] = true;
+            }
+        }
+        
+        for (boolean letterPresent : alphabet) {
+            if (!letterPresent) {
+                return false; // If any letter is not present, it's not a pangram
+            }
+        }
+        
+        return true; // All letters are present, it's a pangram
+    }
+}
+
+Java Script
+function reverseWordsInSentence(sentence) {
+  // Split the sentence into words using a space as the delimiter
+  const words = sentence.split(' ');
+
+  // Reverse each word and store it back in the array
+  const reversedWords = words.map(word => {
+    return word.split('').reverse().join('');
+  });
+
+  // Join the reversed words to form the final reversed sentence
+  const reversedSentence = reversedWords.join(' ');
+
+  return reversedSentence;
+}
+
+// Example usage
+const inputSentence = "This is a sunny day";
+const reversedSentence = reverseWordsInSentence(inputSentence);
+console.log(reversedSentence); // Output: "sihT si a ynnus yad"
+
+// Sample array
+const numbers = [5, 2, 9, 1, 5, 6];
+
+// Sort the array in descending order
+numbers.sort(function(a, b) {
+  return b - a;
+});
+
+console.log(numbers); // Output: [9, 6, 5, 5, 2, 1]
+
+HTML
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Add your CSS styling here */
+    .calculator {
+      width: 200px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      width: 45px;
+      height: 45px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToDisplay('/')">/</button>
+  </div>
+
+  <script>
+    let displayValue = '';
+
+    function appendToDisplay(value) {
+      displayValue += value;
+      document.getElementById('display').value = displayValue;
+    }
+
+    function clearDisplay() {
+      displayValue = '';
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      try {
+        displayValue = eval(displayValue);
+        document.getElementById('display').value = displayValue;
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Add your CSS styling here */
+    .survey-form {
+      width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="survey-form">
+    <h2>Survey Form</h2>
+    <form id="surveyForm" onsubmit="submitForm(); return false;">
+      <label for="firstName">First Name: *</label>
+      <input type="text" id="firstName" required>
+
+      <label for="lastName">Last Name: *</label>
+      <input type="text" id="lastName" required>
+
+      <label for="dob">Date of Birth: *</label>
+      <input type="date" id="dob" required>
+
+      <label for="country">Country: *</label>
+      <select id="country" required>
+        <option value="USA">USA</option>
+        <option value="Canada">Canada</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <label>Gender: *</label>
+      <label for="male">Male</label>
+      <input type="checkbox" id="male" name="gender" required>
+      <label for="female">Female</label>
+      <input type="checkbox" id="female" name="gender" required>
+      <label for="other">Other</label>
+      <input type="checkbox" id="other" name="gender" required>
+
+      <label for="profession">Profession: *</label>
+      <input type="text" id="profession" required>
+
+      <label for="email">Email: *</label>
+      <input type="email" id="email" required>
+
+      <label for="mobile">Mobile Number: *</label>
+      <input type="tel" id="mobile" required>
+
+      <button type="submit">Submit</button>
+      <button type="button" onclick="resetForm()">Reset</button>
+    </form>
+  </div>
+
+  <script>
+    function submitForm() {
+      // Gather form data
+      const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        dob: document.getElementById('dob').value,
+        country: document.getElementById('country').value,
+        gender: [...document.querySelectorAll('input[name="gender"]:checked')].map(input => input.value),
+        profession: document.getElementById('profession').value,
+        email: document.getElementById('email').value,
+        mobile: document.getElementById('mobile').value
+      };
+
+      // Display data in a popup (you can customize the popup)
+      alert("Survey Form Data:\n\n" + JSON.stringify(formData, null, 2));
+
+      // Reset the form
+      resetForm();
+    }
+
+    function resetForm() {
+      document.getElementById('surveyForm').reset();
+    }
+  </script>
+</body>
+</html>
+
